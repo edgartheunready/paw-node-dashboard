@@ -1,0 +1,27 @@
+<%= form_with(model: tribe) do |form| %>
+  <% if tribe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tribe.errors.count, "error") %> prohibited this tribe from being saved:</h2>
+
+      <ul>
+        <% tribe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :uuid, style: "display: block" %>
+    <%= form.text_field :uuid %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

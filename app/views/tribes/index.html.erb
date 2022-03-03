@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tribes</h1>
+
+<div id="tribes">
+  <% @tribes.each do |tribe| %>
+    <%= render tribe %>
+    <p>
+      <%= link_to "Show this tribe", tribe %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tribe", new_tribe_path %>

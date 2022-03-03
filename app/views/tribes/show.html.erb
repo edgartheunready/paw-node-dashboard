@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tribe %>
+
+<div>
+  <%= link_to "Edit this tribe", edit_tribe_path(@tribe) %> |
+  <%= link_to "Back to tribes", tribes_path %>
+
+  <%= button_to "Destroy this tribe", @tribe, method: :delete %>
+</div>
