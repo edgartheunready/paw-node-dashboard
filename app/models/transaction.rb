@@ -24,4 +24,8 @@ class Transaction < ApplicationRecord
     tmp = amount.reverse
     "#{tmp[0..26]}.#{tmp[27..tmp.size - 1]}".reverse[0..10]
   end
+
+  def self.analyze
+    Transaction.all.map{|it| it.to_datetime.strftime("%M")[1]}.inject(Hash.new(0)){|h, e| h[e] += 1; h}
+  end
 end
