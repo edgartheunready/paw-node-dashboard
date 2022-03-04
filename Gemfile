@@ -65,6 +65,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'guard', '>=2.16.2'
 end
 
 group :test do
@@ -72,4 +73,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'guard-rspec'
+  gem 'rspec-rails'
 end
