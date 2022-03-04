@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_03_03_233044) do
   create_table "transactions", force: :cascade do |t|
-    t.string "type"
+    t.string "transaction_type"
     t.integer "tribe_id"
     t.string "amount"
     t.string "local_timestamp"

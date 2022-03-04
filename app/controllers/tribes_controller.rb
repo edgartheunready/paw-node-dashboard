@@ -8,6 +8,7 @@ class TribesController < ApplicationController
 
   # GET /tribes/1 or /tribes/1.json
   def show
+    @transactions = @tribe.transactions.order("local_timestamp desc")
   end
 
   # GET /tribes/new

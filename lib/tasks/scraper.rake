@@ -1,8 +1,10 @@
 desc "Runs the Daily Reports"
-namespace :scraper do
+namespace :scrape do
 
-  task :accounts  => :environment do
-    TransactionScraper.do_task
+  task :transactions  => :environment do
+    Tribe.find_each{|tribe|
+      Transaction.scrape(tribe)
+    }
   end
 
 end

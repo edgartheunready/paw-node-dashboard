@@ -9,7 +9,7 @@
       <th>Type</th>
       <th>Created At</th>
     </tr>
-    <% @transactions.each do |transaction| %>
+    <% @transactions.order("local_timestamp desc").each do |transaction| %>
       <tr>
         <td><%= transaction.normalized_amount%></td>
         <td><%= transaction.transaction_type%></td>
