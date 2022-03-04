@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @tribe&.name%>'s transactions</h1>
+
+<div id="tribes" class="p-4">
+  <table>
+    <tr>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Created At</th>
+    </tr>
+    <% @transactions.order("local_timestamp desc").each do |transaction| %>
+      <tr>
+        <td class="px-2"><%= transaction.normalized_amount%></td>
+        <td class="px-2"><%= transaction.transaction_type%></td>
+        <td class="px-2"><%= transaction.to_datetime.strftime("%D %T")%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
