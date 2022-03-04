@@ -1,8 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= @tribe.name%>'s transactions</h1>
+<h1><%= @tribe&.name%>'s transactions</h1>
 
-<div id="tribes">
+<div id="tribes" class="p-4">
   <table>
     <tr>
       <th>Amount</th>
@@ -11,9 +11,9 @@
     </tr>
     <% @transactions.order("local_timestamp desc").each do |transaction| %>
       <tr>
-        <td><%= transaction.normalized_amount%></td>
-        <td><%= transaction.transaction_type%></td>
-        <td><%= transaction.to_datetime.strftime("%D %T")%></td>
+        <td class="px-2"><%= transaction.normalized_amount%></td>
+        <td class="px-2"><%= transaction.transaction_type%></td>
+        <td class="px-2"><%= transaction.to_datetime.strftime("%D %T")%></td>
       </tr>
     <% end %>
   </table>
