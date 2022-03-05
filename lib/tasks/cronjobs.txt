@@ -1,0 +1,7 @@
+# see the contents of your crontab with "crontab -l"
+# edit the contents of your cron jobs with "crontab -e"
+# copy/paste this whole file after running "crontab -e"
+# depending on your crontab implementation, there are different ways it gets saved.
+# once your write/quit, run "crontab -l" again to make sure your changes took effect
+*/7  * * * * /root/restart-paw.sh >/dev/null 2>&1
+* * * * * /usr/local/bin/paw_node --daemon & >/dev/null 2>&1
