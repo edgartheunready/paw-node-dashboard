@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_03_233044) do
-  create_table "transactions", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_03_05_155614) do
+  create_table "account_transactions", force: :cascade do |t|
     t.string "transaction_type"
-    t.integer "tribe_id"
+    t.integer "account_id"
     t.string "amount"
     t.string "local_timestamp"
     t.string "height"
-    t.string "hash"
+    t.string "transaction_hash"
     t.boolean "confirmed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hash"], name: "index_transactions_on_hash", unique: true
+    t.index ["transaction_hash"], name: "index_account_transactions_on_transaction_hash", unique: true
   end
 
-  create_table "tribes", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.string "uuid"
     t.datetime "created_at", null: false

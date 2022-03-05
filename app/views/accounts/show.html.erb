@@ -1,8 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= @tribe.name%>'s transactions</h1>
+<h1><%= @account.name%>'s transactions</h1>
 
-<div id="tribes">
+<div id="accounts">
   <table>
     <tr>
       <th>Amount</th>
@@ -13,7 +13,7 @@
       <tr>
         <td><%= transaction.normalized_amount%></td>
         <td><%= transaction.transaction_type%></td>
-        <td><%= transaction.to_datetime.strftime("%D %T")%></td>
+        <td><%= transaction.created_at.strftime("%D %T")%></td>
       </tr>
     <% end %>
   </table>

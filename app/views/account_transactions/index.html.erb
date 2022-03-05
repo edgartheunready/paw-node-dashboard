@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1><%= @account&.name%>'s account_transactions</h1>
+
+<div id="accounts" class="p-4">
+  <table>
+    <tr>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Created At</th>
+    </tr>
+    <% @account_transactions.order("local_timestamp desc").each do |account_transaction| %>
+      <tr>
+        <td class="px-2"><%= account_transaction.normalized_amount%></td>
+        <td class="px-2"><%= account_transaction.transaction_type%></td>
+        <td class="px-2"><%= account_transaction.to_datetime.strftime("%D %T")%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

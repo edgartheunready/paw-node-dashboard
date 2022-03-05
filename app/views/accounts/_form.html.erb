@@ -1,10 +1,10 @@
-<%= form_with(model: tribe) do |form| %>
-  <% if tribe.errors.any? %>
+<%= form_with(model: account) do |form| %>
+  <% if account.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(tribe.errors.count, "error") %> prohibited this tribe from being saved:</h2>
+      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
 
       <ul>
-        <% tribe.errors.each do |error| %>
+        <% account.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
