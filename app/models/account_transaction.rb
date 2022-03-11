@@ -19,6 +19,10 @@ class AccountTransaction < ApplicationRecord
     )
   end
 
+  def self.payouts
+    where(target_account: [nil, 'paw_1qfe5u7bcm7qrpp9rhk9p7wyqw316om1ts7s4gm466nwy6ueniik1gzwcno8'])
+  end
+
   def to_datetime
     Time.at(local_timestamp.to_i).to_datetime
   end

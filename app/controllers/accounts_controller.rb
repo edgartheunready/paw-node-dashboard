@@ -63,8 +63,11 @@ class AccountsController < ApplicationController
   end
 
   def trends
-    Account.scrape_all
+    if AccountTransaction.last.to_datetime < 10.minutes.ago
+      Account.scrape_all
+    end
     @trends = Account.generate_trends
+    @payouts = Account.generate_payouts
   end
 
   private

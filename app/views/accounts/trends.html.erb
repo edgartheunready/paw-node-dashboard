@@ -1,17 +1,58 @@
-<h1 class="text-xl"> Trends (Transaction counts) <h1>
+<h1 class="text-2xl"> Trends <h1>
 <%= link_to "<< Back to Accounts", accounts_path(), class: " p-2 rounded-lg text-blue-500 hover:underline" %>
-<table>
-<tr>
-  <% header = @trends.shift %>
-  <% header.each do |it| %>
-    <th class="px-2"><%= it %></th>
-  <%end%>
-</tr>
-<% @trends.each do |row| %>
-  <tr>
-    <% row.each do |it| %>
-      <td class="px-2"><%= it %></td>
+<div class="space-y-10">
+  <div class="bg-gray-800 rounded-xl  p-4 ">
+    <h2 class="text-xl ml-2">Transactions</h2>
+    <table class="mb-8">
+    <tr>
+      <% header = @trends.shift %>
+      <% header.each_with_index do |it, idx| %>
+        <% if idx == 0 %>
+          <th class="px-2 text-left"><%= it %></th>
+        <% else %>
+          <th class="px-2 text-right"><%= it %></th>
+        <% end %>
+      <%end%>
+    </tr>
+    <% @trends.each do |row| %>
+      <tr>
+        <% row.each do |it| %>
+          <% if it.is_a? String %>
+            <td class="px-2"><%= it %></td>
+          <% else %>
+            <td class="px-2 text-right"><%= number_with_delimiter(it) %></td>
+          <% end %>
+        <%end%>
+      </tr>
     <%end%>
-  </tr>
-<%end%>
-</table>
+    </table>
+  </div>
+
+
+  <div class="bg-gray-800 rounded-xl p-4">
+  <h2 class="text-xl ml-2">Amounts</h2>
+    <table>
+    <tr>
+      <% header = @payouts.shift %>
+      <% header.each_with_index do |it, idx| %>
+        <% if idx == 0 %>
+          <th class="px-2 text-left"><%= it %></th>
+        <% else %>
+          <th class="px-2 text-right"><%= it %></th>
+        <% end %>
+      <%end%>
+    </tr>
+    <% @payouts.each do |row| %>
+      <tr>
+        <% row.each do |it| %>
+          <% if it.is_a? String %>
+            <td class="px-2"><%= it %></td>
+          <% else %>
+            <td class="px-2 text-right"><%= number_with_delimiter(it) %></td>
+          <% end %>
+        <%end%>
+      </tr>
+    <%end%>
+    </table>
+  </div>
+</div>

@@ -2,6 +2,18 @@ require "rails_helper"  # this
 
 RSpec.describe AccountTransaction, type: :model  do
 
+  describe "payouts" do
+    it "only includes blank and special target_accounts" do
+      first = AccountTransaction.create(local_timestamp: "1646356275", target_account: nil)
+      second = AccountTransaction.create(local_timestamp: "1646356275", target_account: "asdf")
+      third = AccountTransaction.create(local_timestamp: "1646356275", target_account: "paw_1qfe5u7bcm7qrpp9rhk9p7wyqw316om1ts7s4gm466nwy6ueniik1gzwcno8")
+      expect(AccountTransaction.payouts).to eq([
+        first,
+        third
+      ])
+    end
+  end
+
   describe "to_datetime" do
     it "turns seconds since epoch into datetimes" do
       transaction = AccountTransaction.create(local_timestamp: "1646356275")
