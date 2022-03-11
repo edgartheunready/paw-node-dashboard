@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_05_155614) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_11_132340) do
   create_table "account_transactions", force: :cascade do |t|
     t.string "transaction_type"
     t.integer "account_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_05_155614) do
     t.boolean "confirmed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "target_account"
     t.index ["transaction_hash"], name: "index_account_transactions_on_transaction_hash", unique: true
   end
 

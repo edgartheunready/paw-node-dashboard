@@ -3,7 +3,7 @@ class AccountTransaction < ApplicationRecord
   def self.scrape(account)
     url = account.as_url + "/history"
     response = JSON.parse(RestClient.get(url).body).map{|it|
-      puts it
+      it[:target_account] = it['account']
       it.delete("account")
       it[:transaction_type] = it['type']
       it[:transaction_hash] = it['hash']

@@ -3,9 +3,9 @@ require "rails_helper"  # this
 RSpec.describe AccountTransaction, type: :model  do
 
   describe "to_datetime" do
-    xit "turns seconds since epoch into datetimes" do
+    it "turns seconds since epoch into datetimes" do
       transaction = AccountTransaction.create(local_timestamp: "1646356275")
-      expect(transaction.to_datetime.strftime("%D %T")).to eq("")
+      expect(transaction.to_datetime.strftime("%D %T")).to eq("03/03/22 20:11:15")
     end
   end
 
@@ -37,6 +37,9 @@ RSpec.describe AccountTransaction, type: :model  do
     }.to change{
       AccountTransaction.count    
     }.by(20)
+
+    transaction = AccountTransaction.last
+    expect(transaction.target_account).to eq("paw_1k94ieq4xj8jjniryf33ot7cehkx3k9k13bcnwnsm986w7fwu6f3zym9srhn")
 
     expect{
       AccountTransaction.scrape(account)
