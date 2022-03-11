@@ -1,14 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="p-2">
+  <p style="color: green"><%= notice %></p>
 
-<h1>accounts</h1>
+  <div class="text-black m-8 ml-0">
+    <a href="/accounts/trends" class="bg-blue-500 p-4 m-4 rounded-xl text-white">View Trends</a>
+  </div>
 
-<div id="accounts">
-  <% @accounts.each do |account| %>
-    <%= render account %>
-    <p>
-      <%= link_to "Show this account", account %>
-    </p>
-  <% end %>
+  <h1 class="text-xl p-4">Accounts</h1>
+
+  <div id="accounts " class="p-4">
+    <% @accounts.each do |account| %>
+      <div class="mb-12">
+        <%= render account %>
+        <p class="m-4 ml-0">
+          <%= link_to "View #{account.name}", account, class: "bg-blue-500 text-white p-2 rounded-lg" %>
+          <a href="https://tribes.paw.digital/account/<%= account.uuid%>" class="bg-blue-500 text-white p-2 rounded-lg">View on Paw Digital</a>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New account", new_account_path %>
 </div>
-
-<%= link_to "New account", new_account_path %>

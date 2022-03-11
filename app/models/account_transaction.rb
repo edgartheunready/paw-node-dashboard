@@ -1,4 +1,5 @@
 class AccountTransaction < ApplicationRecord
+  belongs_to :account, optional: true
   def self.scrape(account)
     url = account.as_url + "/history"
     response = JSON.parse(RestClient.get(url).body).map{|it|

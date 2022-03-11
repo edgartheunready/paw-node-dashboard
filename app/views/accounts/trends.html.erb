@@ -1,1 +1,17 @@
-<%= AccountTransaction.where("").group(:account_id).count%>
+<h1 class="text-xl"> Trends (Transaction counts) <h1>
+<%= link_to "<< Back to Accounts", accounts_path(), class: " p-2 rounded-lg text-blue-500 hover:underline" %>
+<table>
+<tr>
+  <% header = @trends.shift %>
+  <% header.each do |it| %>
+    <th class="px-2"><%= it %></th>
+  <%end%>
+</tr>
+<% @trends.each do |row| %>
+  <tr>
+    <% row.each do |it| %>
+      <td class="px-2"><%= it %></td>
+    <%end%>
+  </tr>
+<%end%>
+</table>

@@ -59,7 +59,8 @@ class AccountsController < ApplicationController
   end
 
   def trends
-    # @trends = Account.generate_trends
+    Account.scrape_all
+    @trends = Account.generate_trends
   end
 
   private
