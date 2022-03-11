@@ -7,6 +7,11 @@ class AccountTransactionsController < ApplicationController
     else
       @transactions = AccountTransaction.all
     end
+
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render :json => @transactions.to_json }
+    end
   end
 
   private
