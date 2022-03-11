@@ -68,6 +68,14 @@ class AccountsController < ApplicationController
     end
     @trends = Account.generate_trends
     @payouts = Account.generate_payouts
+
+    totals = @trends.map(&:clone)
+    totals.shift
+    @trends << ["Totals"] + totals.map{|it| it.shift; it}.transpose.map{|it| it.sum}
+    
+    totals = @payouts.map(&:clone)
+    totals.shift
+    @payouts << ["Totals"] + totals.map{|it| it.shift; it}.transpose.map{|it| it.sum}
   end
 
   private
