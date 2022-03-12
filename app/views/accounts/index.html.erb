@@ -13,7 +13,8 @@
         <%= render account %>
         <p class="m-4 ml-0">
           <%= link_to "View #{account.name}", account, class: "bg-blue-500 text-white p-2 rounded-lg" %>
-          <a href="https://tribes.paw.digital/account/<%= account.uuid%>" class="bg-blue-500 text-white p-2 rounded-lg">View on Paw Digital</a>
+          <a href="https://tribes.paw.digital/account/<%= account.uuid%>" class="bg-blue-500 text-white p-2 rounded-lg">Tribe Page</a>
+          <a href="https://tracker.paw.digital/account/<%= account.uuid%>" class="bg-blue-500 text-white p-2 rounded-lg">Tracker Page</a>
         </p>
       </div>
     <% end %>
