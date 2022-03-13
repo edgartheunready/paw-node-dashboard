@@ -2,6 +2,26 @@ require "rails_helper"  # this
 
 RSpec.describe AccountTransaction, type: :model  do
 
+  describe "hourly_by_account" do
+    account = Account.create(uuid: "paw_1qfe5u7bcm7qrpp9rhk9p7wyqw316om1ts7s4gm466nwy6ueniik1gzwcno8")
+    it "creates a 2-D array of hourly transactions" do
+      
+    RestClient = double
+    data =  File.read("test/fixtures/transactions.json")
+
+    response = double
+    response.stub(:code) { 200 }
+    response.stub(:body) { data }
+    response.stub(:headers) { {} }
+    RestClient.stub(:get) { response }  
+    AccountTransaction.scrape(account)
+
+
+    expect(AccountTransaction.hourly_by_account).to eq([])
+    AccountTransaction.delete_all
+    end
+  end
+
   describe "payouts" do
     it "only includes blank and special target_accounts" do
       first = AccountTransaction.create(local_timestamp: "1646356275", target_account: nil, transaction_type: "receive")

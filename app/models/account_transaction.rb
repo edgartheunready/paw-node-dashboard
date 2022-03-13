@@ -23,6 +23,24 @@ class AccountTransaction < ApplicationRecord
     where(target_account: [nil, 'paw_1qfe5u7bcm7qrpp9rhk9p7wyqw316om1ts7s4gm466nwy6ueniik1gzwcno8'], transaction_type: "receive")
   end
 
+  def self.hourly_by_account
+    Time.zone = "Eastern Time (US & Canada)"
+    results = {}
+     payouts.where(created_at:(1.day.ago..0.days.ago)).map{|it| 
+      if results[it.account_id].nil?
+        results[it.account_id] = Hash.new(0)
+      end
+      results[it.account_id][it.created_at.strftime("%I %P")] += 1
+    }
+    
+    {
+      data: results,
+      keys: (0..23).map{|it|
+        it.hours.ago.strftime("%I %P")
+      }
+    }
+  end
+
   def to_datetime
     Time.at(local_timestamp.to_i).to_datetime
   end
