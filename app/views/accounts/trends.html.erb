@@ -59,24 +59,23 @@
   <div class="bg-gray-800 rounded-xl  p-4 inline-block">
     Next Node: <%= number_with_delimiter @countdown.to_i %>
   </div>
-
+  <br>
+  
+  <br>
   <div class="bg-gray-800 rounded-xl  p-4 inline-block">
-  <h1 class="text-xl"> Transactions per hour <h1>
+  <h1 class="text-xl"> Transactions per hour (last 72h) <h1>
   <table>
     <tr>
     <th class="px-2 text-left">Account</th>
       <% header = @hourly[:keys] %>
       <% header.each_with_index do |it, idx| %>
-        <% if idx == 0 %>
-          <th class="px-2 text-left"><%= it %></th>
-        <% else %>
-          <th class="px-2 text-right"><%= it %></th>
-        <% end %>
+        <th class="px-1 text-center"><%= raw it %></th>
       <%end%>
     </tr>
-    <% @hourly[:data].each do |k, v| %>
+    <% @counts.each do |k| %>
+      <% v = @hourly[:data][k]; next if v.nil? %>
       <tr >
-        <td class="px-2 text-right" ><%= Account.find(k).name %></td>
+        <td class="px-2 text-right" style="min-width: 236px;" ><%= Account.find(k).name %></td>
         <% header.each do |key| %>
             <td>
               <div  class="m-1 text-center pt-3 rounded-xl w-12 h-12 <%= bg_helper(v[key]) %>">

@@ -4,19 +4,19 @@ module ApplicationHelper
     when 0
       "bg-red-500"
     when 1
-      "bg-red-400"
+      "bg-orange-500"
     when 2
-      "bg-orange-400"
+      "bg-orange-500"
     when 3
-      "bg-yellow-400"
+      "bg-yellow-500"
     when 4
-      "bg-blue-500"
+      "bg-green-500"
     when 5
-      "bg-green-400"
+      "bg-green-600"
     when 6
-      "bg-green-500"
+      "bg-blue-500"
     when 7
-      "bg-green-500"
+      "bg-blue-500"
     end
   end
 end

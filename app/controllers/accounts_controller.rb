@@ -78,6 +78,8 @@ class AccountsController < ApplicationController
     @payouts << ["Totals"] + totals.map{|it| it.shift; it}.transpose.map{|it| it.sum}
     
     @countdown = AccountTransaction.payouts.where(created_at: (DateTime.parse("2022-03-12T20:26:41-05:00")..0.days.ago)).map{|it| it.normalized_amount.to_f}.sum.to_i
+    @counts = AccountTransaction.payouts.where(created_at:72.hours.ago..0.days.ago).group(:account_id).count.invert
+    @counts = @counts.keys.sort.map{|it| @counts[it]}.reverse
     @hourly = AccountTransaction.hourly_by_account()
   end
 

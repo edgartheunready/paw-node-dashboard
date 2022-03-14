@@ -25,18 +25,20 @@ class AccountTransaction < ApplicationRecord
 
   def self.hourly_by_account
     Time.zone = "Eastern Time (US & Canada)"
+    duration = 72
     results = {}
-     payouts.where(created_at:(1.day.ago..0.days.ago)).map{|it| 
+     payouts.where(created_at:(duration.hours.ago.beginning_of_hour..0.hours.ago.end_of_hour)).map{|it| 
       if results[it.account_id].nil?
         results[it.account_id] = Hash.new(0)
       end
-      results[it.account_id][it.created_at.strftime("%I %P")] += 1
+      results[it.account_id][it.created_at.strftime("#{it.created_at.day.ordinalize}<br> %l %P")] += 1
     }
     
     {
       data: results,
-      keys: (0..23).map{|it|
-        it.hours.ago.strftime("%I %P")
+      keys: (0..duration).to_a.map{|it|
+        hour = it.hours.ago
+        hour.strftime("#{hour.day.ordinalize}<br> %l %P")
       }
     }
   end
