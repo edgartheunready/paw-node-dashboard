@@ -81,6 +81,7 @@ class AccountsController < ApplicationController
     @counts = AccountTransaction.payouts.where(created_at:72.hours.ago..0.days.ago).group(:account_id).count.invert
     @counts = @counts.keys.sort.map{|it| @counts[it]}.reverse
     @hourly = AccountTransaction.hourly_by_account()
+    @hourly_paw = AccountTransaction.hourly_paw_by_account()
   end
 
   private

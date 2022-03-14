@@ -63,30 +63,55 @@
   
   <br>
   <div class="bg-gray-800 rounded-xl  p-4 inline-block">
-  <h1 class="text-xl"> Transactions per hour (last 72h) <h1>
-  <table>
-    <tr>
-    <th class="px-2 text-left">Account</th>
-      <% header = @hourly[:keys] %>
-      <% header.each_with_index do |it, idx| %>
-        <th class="px-1 text-center"><%= raw it %></th>
-      <%end%>
-    </tr>
-    <% @counts.each do |k| %>
-      <% v = @hourly[:data][k]; next if v.nil? %>
-      <tr >
-        <td class="px-2 text-right" style="min-width: 236px;" ><%= Account.find(k).name %></td>
-        <% header.each do |key| %>
+    <h1 class="text-xl"> Transactions per hour (last 72h) <h1>
+    <table>
+      <tr>
+        <th class="px-2 text-left">Account</th>
+        <% header = @hourly[:keys] %>
+        <% header.each_with_index do |it, idx| %>
+          <th class="px-1 text-center"><%= raw it %></th>
+        <%end%>
+      </tr>
+      <% @counts.each do |k| %>
+        <% v = @hourly[:data][k]; next if v.nil? %>
+        <tr >
+          <td class="px-2 text-right" style="min-width: 236px;" ><%= Account.find(k).name %></td>
+          <% header.each do |key| %>
             <td>
               <div  class="m-1 text-center pt-3 rounded-xl w-12 h-12 <%= bg_helper(v[key]) %>">
                 <%= number_with_delimiter(v[key]) %>
               </div>
             </td>
+          <%end%>
+        </tr>
+      <%end%>
+    </table>
+  </div>
+
+   <br>
+  <div class="bg-gray-800 rounded-xl  p-4 inline-block">
+    <h1 class="text-xl"> Paw per hour (last 72h) <h1>
+    <table>
+      <tr>
+        <th class="px-2 text-left">Account</th>
+        <% header = @hourly[:keys] %>
+        <% header.each_with_index do |it, idx| %>
+          <th class="px-1 text-center"><%= raw it %></th>
         <%end%>
       </tr>
-    <%end%>
+      <% @counts.each do |k| %>
+        <% v = @hourly_paw[:data][k]; next if v.nil? %>
+        <tr >
+          <td class="px-2 text-right" style="min-width: 236px;" ><%= Account.find(k).name %></td>
+          <% header.each do |key| %>
+            <td>
+              <div  class="m-1 text-center pt-3 rounded-xl w-12 h-12 <%= paw_bg_helper(v[key]) %>">
+                <%= number_to_human(v[key]) %>
+              </div>
+            </td>
+          <%end%>
+        </tr>
+      <%end%>
     </table>
-
-
   </div>
 </div>
