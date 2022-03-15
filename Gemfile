@@ -78,3 +78,5 @@ group :test do
   gem 'guard-rspec'
   gem 'rspec-rails'
 end
+
+gem "tailwindcss-rails", "~> 2.0"
