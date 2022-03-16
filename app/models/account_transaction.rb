@@ -47,11 +47,13 @@ class AccountTransaction < ApplicationRecord
     Time.zone = "Eastern Time (US & Canada)"
     duration = 200
     results = {}
+    results['total'] = Hash.new(0)
      payouts.where(created_at:(duration.hours.ago.beginning_of_hour..0.hours.ago.end_of_hour)).map{|it| 
       if results[it.account_id].nil?
         results[it.account_id] = Hash.new(0)
       end
       results[it.account_id][it.created_at.strftime("#{it.created_at.day.ordinalize}<br> %l %P")] += it.normalized_amount.to_f 
+      results["total"][it.created_at.strftime("#{it.created_at.day.ordinalize}<br> %l %P")] += it.normalized_amount.to_f 
     }
     
     {

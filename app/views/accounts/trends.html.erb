@@ -1,6 +1,6 @@
 <h1 class="text-2xl"> Trends <h1>
 <%= link_to "<< Back to Accounts", accounts_path(), class: " p-2 rounded-lg text-blue-500 hover:underline" %>
-<div class="space-y-10">
+<div class="space-y-3">
   <div class="bg-gray-800 rounded-xl  p-4 inline-block   w-full overflow-y-scroll">
     <h2 class="text-xl ml-2">Transactions</h2>
     <table class="mb-8">
@@ -27,10 +27,9 @@
     <%end%>
     </table>
   </div>
-  <br>
 
   <div class="bg-gray-800 rounded-xl p-4  inline-block   w-full overflow-y-scroll">
-  <h2 class="text-xl ml-2">Amounts</h2>
+    <h2 class="text-xl ml-2">Amounts</h2>
     <table>
     <tr>
       <% header = @payouts.shift %>
@@ -55,13 +54,9 @@
     <%end%>
     </table>
   </div>
-  <br>
   <div class="bg-gray-800 rounded-xl  p-4 inline-block">
     Next Node: <%= number_with_delimiter @countdown.to_i %>
   </div>
-  <br>
-  
-  <br>
   <div class="bg-gray-800 rounded-xl  p-4 inline-block  w-full overflow-y-scroll">
     <h1 class="text-xl"> Transactions per hour (last 72h) <h1>
     <table>
@@ -88,7 +83,7 @@
     </table>
   </div>
 
-   <br>
+   
   <div class="bg-gray-800 rounded-xl  p-4 inline-block w-full overflow-y-scroll">
     <h1 class="text-xl"> Paw per hour (last 72h) <h1>
     <table>
@@ -102,7 +97,7 @@
       <% @counts.each do |k| %>
         <% v = @hourly_paw[:data][k]; next if v.nil? %>
         <tr >
-          <td class="px-2 text-right" style="min-width: 236px;" ><%= Account.find(k).name %></td>
+          <td class="px-2 text-right" style="min-width: 236px;" ><%= k == 'total' ? k : Account.find(k).name %></td>
           <% header.each do |key| %>
             <td>
               <div  class="m-1 text-center pt-3 rounded-xl w-12 h-12 <%= paw_bg_helper(v[key]) %>">
